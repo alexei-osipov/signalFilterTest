@@ -9,7 +9,7 @@ Filter must implement the following interface:
 	}
 ```
  
-The following pseudo-code illustrates how you filter may be used:
+The following pseudo-code illustrates how your filter could be used:
 ```java
 	Filter frequencyFilter = new YourFilter(N); 
 	while (true) {
@@ -20,4 +20,6 @@ The following pseudo-code illustrates how you filter may be used:
 	}
 ```
 
-Implementation must be efficient and thread-safe. Parameter N can be a immutable for lifetime of the filter.
+Implementation must be *efficient* and *thread-safe*. Parameter N can be a immutable for lifetime of the filter.
+
+If you have questions don't hesitate to ask.
