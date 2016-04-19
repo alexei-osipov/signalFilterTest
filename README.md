@@ -1,6 +1,6 @@
 # Signal Filter Test Assignment
 
-External system generates signals at random intervals. You need to implement Java filter interface that will reject a signal if there weeer more than N signals in the last 100 seconds.
+External system generates signals at random intervals. You need to implement Java filter that accepts at most N signals per minute.
 
 Filter must implement the following interface:
 ```java	
@@ -11,7 +11,7 @@ Filter must implement the following interface:
  
 The following pseudo-code illustrates how you filter may be used:
 ```java
-	Filter frequencyFilter = new YourFilter(N, 100); 
+	Filter frequencyFilter = new YourFilter(N); 
 	while (true) {
 		Signal signal = waitForSignal();
 		if (frequencyFilter.isSignalAllowed()) {
