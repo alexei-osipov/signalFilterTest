@@ -15,7 +15,7 @@ The following pseudo-code illustrates how your filter could be used:
 	while (true) {
 		Signal signal = waitForSignal();
 		if (frequencyFilter.isSignalAllowed()) {
-		   transmit (signal);
+		   process (signal);
 		}
 	}
 ```
