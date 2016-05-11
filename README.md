@@ -1,6 +1,6 @@
 # Signal Filter Test Assignment
 
-External system generates signals at random intervals. You need to implement Java filter that accepts at most N signals per minute.
+External system generates signals at random intervals. You need to implement Java filter that accepts at most N signals per minute (at any time).
 
 Filter must implement the following interface:
 ```java	
