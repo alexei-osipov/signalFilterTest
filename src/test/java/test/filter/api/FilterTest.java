@@ -1,5 +1,7 @@
 package test.filter.api;
 
+import test.filter.impl.ArrayBlockingQueueFilter;
+
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -7,6 +9,8 @@ import java.util.concurrent.atomic.AtomicInteger;
  * This is a small app that demonstrates how a {@link Filter} can be used.
  *
  * If you want to score some extra points you can implement JUnit tests for your implementation.
+ *
+ * @author Alexei Osipov
  */
 public class FilterTest {
     private static final int numberOfSignalsPerProducer = 100;
@@ -52,7 +56,9 @@ public class FilterTest {
 
     public static void main (String ... args) throws InterruptedException {
         final int N = 100;
-        Filter filter = new RandomFilter(N); //TODO: replace by your implementation
+        Filter filter = new ArrayBlockingQueueFilter(N); //TODO: replace by your implementation
+
+        long startTime = System.currentTimeMillis();
 
         AtomicInteger totalPassed = new AtomicInteger();
         Thread [] producers = new Thread[numberOfSignalsProducers];
@@ -65,7 +71,9 @@ public class FilterTest {
         for (Thread producer : producers)
             producer.join();
 
-        System.out.println("Filter allowed " + totalPassed + " signals out of " + (numberOfSignalsPerProducer * numberOfSignalsProducers));
+        long endTime = System.currentTimeMillis();
+
+        System.out.println("Filter allowed " + totalPassed + " signals out of " + (numberOfSignalsPerProducer * numberOfSignalsProducers) + " in " + (endTime - startTime) + " ms");
     }
 
 }
