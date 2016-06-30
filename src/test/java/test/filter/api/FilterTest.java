@@ -1,6 +1,6 @@
 package test.filter.api;
 
-import test.filter.impl.ArrayBlockingQueueFilter;
+import test.filter.impl.AtomicLockFilter;
 
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -13,8 +13,8 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @author Alexei Osipov
  */
 public class FilterTest {
-    private static final int numberOfSignalsPerProducer = 100;
-    private static final int numberOfSignalsProducers = 3;
+    private static final int numberOfSignalsPerProducer = 300000;
+    private static final int numberOfSignalsProducers = 20;
 
     private static class RandomFilter implements Filter {
         private final Random rnd = new Random();
@@ -46,7 +46,7 @@ public class FilterTest {
                 for (int j = 0; j < numberOfSignalsPerProducer; j++) {
                     if (filter.isSignalAllowed())
                         totalPassed.incrementAndGet();
-                    Thread.sleep(rnd.nextInt(100));
+                    Thread.sleep(rnd.nextInt(1));
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -55,8 +55,8 @@ public class FilterTest {
     }
 
     public static void main (String ... args) throws InterruptedException {
-        final int N = 100;
-        Filter filter = new ArrayBlockingQueueFilter(N); //TODO: replace by your implementation
+        final int N = 1000000;
+        Filter filter = new AtomicLockFilter(N); //TODO: replace by your implementation
 
         long startTime = System.currentTimeMillis();
 
