@@ -99,7 +99,7 @@ public class AtomicLockFilter implements Filter {
                     }
 
                     // Release lock
-                    int nextUnlocked = buildNextUnlockedVersion(currentVersionAndFlag, signalAllowed);
+                    int nextUnlocked = buildNextUnlockedVersion(nextLockedVersion, signalAllowed);
                     boolean releaseSuccess = versionAndFlags.compareAndSet(nextLockedVersion, nextUnlocked);
                     if (!releaseSuccess) {
                         throw new IllegalStateException("Other thread changed state of locked lock");
